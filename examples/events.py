@@ -41,6 +41,13 @@ async def run(args):
     capabilities = await mycam.get_capabilities()
     pprint.pprint(capabilities)
 
+    deviceio = await mycam.create_deviceio_service()
+    print(deviceio)
+    inputs = await deviceio.GetDigitalInputs()
+    pprint.pprint(inputs)
+
+    return
+
     if args.notification:
         app = web.Application()
         app.add_routes([web.post("/", post_handler)])
